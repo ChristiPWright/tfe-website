@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen require-authentication="anonymous-all" standalone="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    
+    <always-actions>
+        <!-- it looks like this is the get request from backend for datatye of all products?? -->
+        <service-call name="ArtistStore.StoreServices.get#ProductStoreIdFromHostName" in-map="[requestHostName:ec.web.getHostName(false)]" out-map="productStoreIdContext"/>
+        <set field="productStoreId" value="${productStoreIdContext.productStoreId ?: 'POPC_DEFAULT'}"/>
+
+        <service-call name="ArtistStore.StoreServices.get#StoreInfo" in-map="[productStoreId:productStoreId]" out-map="storeInfo"/>
+        <set field="productStore" from="storeInfo.productStore"/>
+        <set field="wikiSpaceId" from="productStore?.wikiSpaceId"/>
+
+        <!-- not quite sure what this if block is doing -->
+        <if condition="ec.user.userId">
+            <entity-find-one entity-name="mantle.party.PartyDetail" value-field="partyDetail">
+                <field-map field-name="partyId" from="ec.user.userId"/>
+            </entity-find-one>
+        </if>
+    </always-actions>
+
+    <transition name="logOut" read-only="true">
+        <actions>
+            <service-call name="ArtistStore.CustomerServices.logout#Customer"/>
+        </actions>
+        <default-response url="${redirectPath ? redirectPath : '.'}"/>
+        <error-response url="${redirectPath ? redirectPath : '.'}"/>
+    </transition>
+    
+    <subscreens default-item="home" always-use-full-path="true"/>
+
+    <pre-actions>
+        <set field="home" value="/ArtistStore"/>
+        <!-- lookup configured browse root category from storeInfo -->
+        <set field="browseRootCategory" from="storeInfo.categoryByType.PsctBrowseRoot"/>
+        <set field="browseRootCategoryId" from="browseRootCategory?.productCategoryId"/>
+        <!-- get browseRootCategoryInfo for subCategoryList used in header, etc -->
+        <if condition="browseRootCategoryId">
+            <service-call name="ArtistStore.ProductServices.get#CategoryInfo" out-map="browseRootCategoryInfo"
+                in-map="[productCategoryId:browseRootCategoryId]"/>
+        </if>
+        <!-- get allProductsInfo for subCategoryList used in header, etc --> 
+        <set field="allProducts" from="storeInfo.categoryByType.PsctSearch"/>
+        <set field="allProductsId" from="storeInfo.categoryByType.PsctSearch?.productCategoryId"/>
+        <if condition="allProductsId">
+            <service-call name="ArtistStore.ProductServices.get#CategoryInfo" out-map="allProductsInfo"
+                in-map="[productCategoryId:allProductsId]"/>
+        </if>
+        <!-- cartInfo for cart count in header/navbar -->
+        <service-call name="ArtistStore.CartServices.get#CartInfo" out-map="cartInfo" in-map="context"/>
+
+    </pre-actions>
+
+    <subscreens default-items="home.html"/>
+
+    <widgets>
+        <render-mode>
+            <text type="html" location="component://tfe-website/screen/store/HTML/header.html" no-boundary-comment="true"/>
+        </render-mode>
+        <!-- <subscreens-active id="root-active"/>  do I need an id? -->
+        <subscreens-active id="root-active"/>
+        <render-mode>
+            <!-- pop store's version <render-mode><text type="html" location="${template_server_root}"/></render-mode> -->
+            <text type="html" location="component://tfe-website/screen/store/HTML/footer.html"/>
+        </render-mode>
+    </widgets>
+</screen>
