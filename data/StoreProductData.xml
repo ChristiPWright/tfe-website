@@ -3,29 +3,18 @@
 <entity-facade-xml type="seed">
     <!-- This section adds the Product Category -->
     <mantle.product.category.ProductCategory productCategoryId="PAINTING" productCategoryTypeEnumId="PctCatalog" categoryName="Painting" description=""/>
-    <mantle.product.category.ProductCategoryParents childProductCategoryId="PAINTING" productCategoryId="PAINTING" parentProductCategoryId="PaintingBrowseRoot"/>
-    <mantle.product.category.ProductCategoryRollup productCategoryId="PAINTING" parentProductCategoryId="PaintingBrowseRoot" fromDate="1265184000000" sequenceNum="1"/>
 
     <!-- This section adds the individual products -->
-    <mantle.product.Product productId="GARDEN_ROOSTER" productTypeEnumId="PtAssetUse" assetTypeEnumId="AstTpInventory" assetClassEnumId="AsClsInventoryFin" chargeShipping="Y" returnable="Y" productName="Garden Rooster" description="">
-        <!-- list price -->
-        <prices productPriceID="GARDEN_ROOSTER" pricePurposeEnumId="PppPurchase" priceTypeEnumId="PptList" fromDate="1265184000000" minQuantity="1" price="419.99" priceUomId="USD"/>
 
-        <categories productCategoryId="PAINTING" />
-
-        <features productFeatureId="Small" sequenceNum="1" applTypeEnumId="PfatSelectable" fromDate="1265184000000"/>
-
-        <contents productContentId="GARDEN_ROOSTER_DL" productContentTypeEnumId="PcntDescriptionLong" locale="en_US"
-                contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/description.html"/>
-        <contents productContentId="GARDEN_ROOSTER_IMG" productContentTypeEnumId="PcntImage" locale="" sequenceNum="1" description="Front" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/img_GARDEN_ROOSTER.jpg"/>
-    </mantle.product.Product>
+    <!-- Adds Garden Rooster Painting Product Info -->
+    <mantle.product.Product productId="GARDEN_ROOSTER"  productName="Garden Rooster" description=""/>
+    <mantle.product.product.ProductCategoryMember productCategoryId="PAINTING" productId="GARDEN_ROOSTER"/>
+    <mantle.product.ProductPrice productPriceId="SMALL" productId="GARDEN_ROOSTER" price="418.99" priceUomId="USD"/>
+    <mantle.product.ProductContent productContentId="GARDEN_ROOSTER_Img"  productId="GARDEN_ROOSTER" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/image.jpg"/>
+    <mantle.product.ProductContent productContentId="GARDEN_ROOSTER_D"  productId="GARDEN_ROOSTER" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/description.jpg"/>
 
     <!-- add the files to the product folder -->
-    <dbResources resourceId="GARDEN_ROOSTER" filename="My_Garden_Rooster.jpg" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/>
-    <dbResources resourceId="GARDEN_ROOSTER" filename="description.txt" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/>
-
-    <!-- call a service to generate variants -->
-    <mantle.product.ProductServices.createVariantProducts productId="GARDEN_ROOSTER" productTypeEnumId="PtAsset"
-            assetTypeEnumId="AstTpInventory" assetClassEnumId="AsClsInventoryFin" copyCategoryMembers="false"/>
+    <!-- <dbResources resourceId="GARDEN_ROOSTER" filename="My_Garden_Rooster.jpg" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/>
+    <dbResources resourceId="GARDEN_ROOSTER" filename="description.txt" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/> -->
 
 </entity-facade-xml>
