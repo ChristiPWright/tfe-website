@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
+        require-authentication="anonymous-view">
+    
+    <!-- <always-actions>
+        <service-call name="ProductServices.get#ProductInfo" in-map="[productId:newProduct.productId]" out-map="allProductInfo"/>
+    </always-actions> -->
+
+    <widgets>
+        <label type="h1" text="I'm on the home.xml file!"/>
+        <render-mode>
+            <text type="html" location="component://tfe-website/screen/tfe-website/HTML/home.html"/>
+        </render-mode>
+    </widgets>
+</screen>

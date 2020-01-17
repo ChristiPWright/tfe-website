@@ -4,9 +4,9 @@
     <moqui.security.ArtifactAuthz userGroupId="ADMIN" authzActionEnumId="AUTHZA_ALL" artifactGroupId="EMPLOYMENT_API" authzTypeEnumId="AUTHZT_ALLOW"/>
 
     <artifactGroups artifactGroupId="EMPLOYMENT_API">
-        <artifacts artifactName="component://tfe-website/screen/store/home*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
+        <artifacts artifactName="component://tfe-website/screen/tfe-website/home*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
 
-        <artifacts artifactName="component://tfe-website/screen/store/home.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="component://tfe-website/screen/tfe-website/home.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
         <artifacts artifactName="component://tfe-website/screen/store.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
         <artifacts artifactName="component://webroot/screen/webroot.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
         

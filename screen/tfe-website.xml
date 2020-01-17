@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen require-authentication="anonymous-all" standalone="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    <subscreens default-item="home"/>
+
+    <widgets>
+        <!-- <render-mode>
+            <text type="html" location="component://tfe-website/screen/tfe-website/HTML/header.html" no-boundary-comment="true"/>
+        </render-mode> -->
+        <!-- <subscreens-active id="root-active"/>  do I need an id? -->
+        <subscreens-active id="root-active"/>
+        <!-- <render-mode> -->
+            <!-- pop store's version <render-mode><text type="html" location="${template_server_root}"/></render-mode> -->
+            <!-- <text type="html" location="component://tfe-website/screen/tfe-website/HTML/footer.html"/>
+        </render-mode> -->
+    </widgets>
+</screen>

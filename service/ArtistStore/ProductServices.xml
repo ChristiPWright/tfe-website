@@ -46,38 +46,38 @@
             <set field="listPrice" from="priceMap.listPrice"/>
             <set field="priceUomId" from="priceMap.priceUomId"/>
 
-            <entity-find-one entity-name="moqui.basic.Enumeration" value-field="productClassEnum">
+            <!-- <entity-find-one entity-name="moqui.basic.Enumeration" value-field="productClassEnum">
                 <field-map field-name="enumId" from="product.productClassEnumId"/></entity-find-one>
-            <set field="productClassDescription" from="productClassEnum?.description"/>
+            <set field="productClassDescription" from="productClassEnum?.description"/> -->
 
-            <entity-find entity-name="mantle.product.feature.ProductFeatureAndAppl" list="standardFeatureList" cache="true">
+            <!-- <entity-find entity-name="mantle.product.feature.ProductFeatureAndAppl" list="standardFeatureList" cache="true">
                 <date-filter/><econdition field-name="productId"/>
                 <econdition field-name="applTypeEnumId" value="PfatStandard"/>
                 <order-by field-name="productFeatureTypeEnumId"/><order-by field-name="description"/>
-            </entity-find>
+            </entity-find> -->
 
             <entity-find entity-name="mantle.product.ProductDimensionAndType" list="dimensionList" cache="true">
-                <econdition field-name="productId"/><order-by field-name="description"/></entity-find>
+                <econdition field-name="productId"/><order-by field-name="description"/></entity-find> -->
 
             <entity-find entity-name="mantle.product.ProductContent" list="contentList" cache="true">
                 <date-filter/><econdition field-name="productId"/>
                 <order-by field-name="sequenceNum,-fromDate"/>
             </entity-find>
 
-            <set field="productRating" from="0"/>
+            <!-- <set field="productRating" from="0"/> -->
 
-            <if condition="locale">
+            <!-- <if condition="locale"> -->
                 <!-- filter after by locale to streamline cached find -->
-                <set field="langLocale" from="locale.contains('_') ? locale.substring(locale.indexOf('_')) : null"/>
-                <set field="contentList" from="contentList.findAll({ it.locale == null || it.locale == locale || it.locale == langLocale })"/>
-            </if>
+                <!-- <set field="langLocale" from="locale.contains('_') ? locale.substring(locale.indexOf('_')) : null"/> -->
+                <!-- <set field="contentList" from="contentList.findAll({ it.locale == null || it.locale == locale || it.locale == langLocale })"/> -->
+            <!-- </if> -->
             <!-- some content types may have more than one record, long description just has one -->
-            <set field="descLongLocation" from="contentList.find({ 'PcntDescriptionLong' == it.productContentTypeEnumId })?.contentLocation"/>
+            <!-- <set field="descLongLocation" from="contentList.find({ 'PcntDescriptionLong' == it.productContentTypeEnumId })?.contentLocation"/>
             <if condition="descLongLocation"><set field="descriptionLong" from="ec.resource.getLocationText(descLongLocation, true)"/></if>
 
             <set field="descSmallLocation" from="contentList.find({ 'PcntDescription' == it.productContentTypeEnumId })?.contentLocation"/>
-            <if condition="descSmallLocation"><set field="descriptionSmall" from="ec.resource.getLocationText(descSmallLocation, true)"/></if>
-            <!-- <set field="imageSmallList" from="contentList.findAll({ 'PcntImageSmall' == it.productContentTypeEnumId })"/> -->
+            <if condition="descSmallLocation"><set field="descriptionSmall" from="ec.resource.getLocationText(descSmallLocation, true)"/></if> -->
+            <set field="imageSmallList" from="contentList.findAll({ 'PcntImageSmall' == it.productContentTypeEnumId })"/> -->
         </actions>
     </service>
 

@@ -8,10 +8,10 @@
 
     <!-- Adds Garden Rooster Painting Product Info -->
     <mantle.product.Product productId="GARDEN_ROOSTER"  productName="Garden Rooster" description=""/>
-    <mantle.product.product.ProductCategoryMember productCategoryId="PAINTING" productId="GARDEN_ROOSTER"/>
+    <!-- <mantle.product.product.ProductCategoryMember productCategoryId="PAINTING" productId="GARDEN_ROOSTER"/>
     <mantle.product.ProductPrice productPriceId="SMALL" productId="GARDEN_ROOSTER" price="418.99" priceUomId="USD"/>
     <mantle.product.ProductContent productContentId="GARDEN_ROOSTER_Img"  productId="GARDEN_ROOSTER" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/image.jpg"/>
-    <mantle.product.ProductContent productContentId="GARDEN_ROOSTER_D"  productId="GARDEN_ROOSTER" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/description.jpg"/>
+    <mantle.product.ProductContent productContentId="GARDEN_ROOSTER_D"  productId="GARDEN_ROOSTER" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/description.jpg"/> -->
 
     <!-- add the files to the product folder -->
     <!-- <dbResources resourceId="GARDEN_ROOSTER" filename="My_Garden_Rooster.jpg" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/>
