@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen require-authentication="anonymous-all" standalone="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    
+    <always-actions>
+        <!-- est. store or uses default of POPC_Default -->
+        <service-call name="tfe-website.StoreServices.get#ProductStoreIdFromHostName" in-map="[requestHostName:ec.web.getHostName(false)]" out-map="productStoreIdContext"/>
+        <set field="productStoreId" value="${productStoreIdContext.productStoreId ?: 'POPC_DEFAULT'}"/>
+
+        <service-call name="tfe-website.StoreServices.get#StoreInfo" in-map="[productStoreId:productStoreId]" out-map="storeInfo"/>
+        <set field="productStore" from="storeInfo.productStore"/>
+        <set field="wikiSpaceId" from="productStore?.wikiSpaceId"/>
+
+        <!-- not quite sure what this if block is doing I think it's linked to the js script updating party w/ user info -->
+        <!-- <if condition="ec.user.userId">
+            <entity-find-one entity-name="mantle.party.PartyDetail" value-field="partyDetail">
+                <field-map field-name="partyId" from="ec.user.userId"/>
+            </entity-find-one>
+        </if> -->
+    </always-actions>
+
+    <!-- didn't add js script in <transition name="config.js" read-only="true"> in PopStore -->
+
+    <transition name="logOut" read-only="true">
+        <actions>
+            <service-call name="popstore.CustomerServices.logout#Customer"/>
+        </actions>
+        <default-response url="${redirectPath ? redirectPath : '.'}"/>
+        <error-response url="${redirectPath ? redirectPath : '.'}"/>
+    </transition>
+    
     <subscreens default-item="home"/>
 
+    <pre-actions>
+    </pre-actions>
+
     <widgets>
-        <!-- <render-mode>
-            <text type="html" location="component://tfe-website/screen/tfe-website/HTML/header.html" no-boundary-comment="true"/>
-        </render-mode> -->
-        <!-- <subscreens-active id="root-active"/>  do I need an id? -->
-        <subscreens-active id="root-active"/>
-        <!-- <render-mode> -->
-            <!-- pop store's version <render-mode><text type="html" location="${template_server_root}"/></render-mode> -->
-            <!-- <text type="html" location="component://tfe-website/screen/tfe-website/HTML/footer.html"/>
-        </render-mode> -->
+        <label type="h1" text="I'm on the tfe-website.xml file!"/>
+        
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/root.html.ftl"/>
+        </render-mode>
+        
     </widgets>
 </screen>

@@ -32,7 +32,7 @@
             <if condition="product == null"><return error="true" message="Product not found with ID ${productId}"/></if>
             <script>context.putAll(product)</script>
 
-            <service-call name="ArtistStore.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
+            <service-call name="tfe-website.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
             <if condition="productStoreId">
                 <entity-find-one entity-name="mantle.product.store.ProductStore" value-field="productStore"/>
                 <if condition="!priceUomId"><set field="priceUomId" from="productStore?.defaultCurrencyUomId"/></if>
@@ -294,7 +294,7 @@
                 <return/>
             </if>
             <!-- either no content of this type or productId refers to variant of a virtual product -->
-            <service-call name="ArtistStore.ProductServices.get#CatalogProductId" in-map="context" out-map="prodIdRes"/>
+            <service-call name="tfe-website.ProductServices.get#CatalogProductId" in-map="context" out-map="prodIdRes"/>
             <if condition="productId != prodIdRes.productId">
                 <entity-find entity-name="mantle.product.ProductContent" list="productContentList" cache="true">
                     <econdition field-name="productContentTypeEnumId"/>
@@ -367,7 +367,7 @@
                     <entity-find-one entity-name="mantle.product.feature.ProductFeature" value-field="productFeature" cache="true">
                         <field-map field-name="productFeatureId" from="variantProductAssoc.productFeatureId"/>
                     </entity-find-one>
-                    <service-call name="ArtistStore.ProductServices.get#ProductQuantity" out-map="productQuantity" in-map="[productId:variantProductAssoc.toProductId]"/>
+                    <service-call name="tfe-website.ProductServices.get#ProductQuantity" out-map="productQuantity" in-map="[productId:variantProductAssoc.toProductId]"/>
                     <entity-find-one entity-name="moqui.basic.Enumeration" value-field="featureType" cache="true">
                         <field-map field-name="enumId" from="productFeature.productFeatureTypeEnumId"/>
                     </entity-find-one>
@@ -476,7 +476,7 @@
             <parameter name="subCategoryList" type="List"><parameter name="categoryInfo" type="Map"/></parameter>
         </out-parameters>
         <actions>
-            <service-call name="ArtistStore.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
+            <service-call name="tfe-website.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
 
             <entity-find-one entity-name="mantle.product.category.ProductCategory" value-field="productCategory" cache="true"/>
             <if condition="productCategory == null"><return error="true" message="Category not found with ID ${productCategoryId}"/></if>
@@ -565,7 +565,7 @@
             <parameter name="productListPageRangeHigh" type="Integer"/>
         </out-parameters>
         <actions>
-            <service-call name="ArtistStore.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
+            <service-call name="tfe-website.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
             <if condition="productStoreId">
                 <entity-find-one entity-name="mantle.product.store.ProductStore" value-field="productStore" cache="true"/>
                 <if condition="!priceUomId"><set field="priceUomId" from="productStore?.defaultCurrencyUomId"/></if>
