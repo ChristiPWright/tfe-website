@@ -24,14 +24,19 @@
     </div>
 </div>
 <div class="container">
-    
+    <#if allProd?has_content>
         <div class="text-left mt-3 modal-text">Edit:This Week's deals</div>
         <div class="carousel">
             <div class="container text-center my-3">
                 <div class="row mx-auto my-auto">
                     <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                         <div class="carousel-inner w-100" role="listbox">
-                                                    
+                            <#list allProd as product>
+                                <#if product?index == 0>
+                                    <div class="carousel-item active">
+                                <#else>
+                                    <div class="carousel-item">
+                                </#if>
                                     <div class="d-block col-lg-3 col-12">
                                         <a class="category-product" href="/store/product/${product.productId}">
                                             <figure class="figure">
@@ -70,6 +75,7 @@
                                         </a>
                                     </div>
                                 </div>
+                            </#list>
                         </div>
                         <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
                             <button type="button" class="carousel-prev"><i class="fas fa-arrow-left"></i></button>
@@ -83,8 +89,8 @@
                 </div>
             </div>
         </div>
-    
-    <#if promoProductList?has_content && featureProductList?has_content><hr/></#if>
+    </#if>
+    <#if allProd?has_content && featureProductList?has_content><hr/></#if>
     <#if featureProductList?has_content>
         <div class="text-left mt-3 modal-text">Best Sellers</div>
         <div class="carousel">
