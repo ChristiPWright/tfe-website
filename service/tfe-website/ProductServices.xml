@@ -73,7 +73,7 @@
                     <if condition="smallImageInfo == null"><set field="smallImageInfo" from="mediumImageInfo"/></if>
                 </if>
                 
-                <!-- Below script needed to render the section.... why? what is it doing? -->
+                <!-- Below script needed to render the section.... What would be another way to achieve this? -->
                 <script>productList.add([productId:pcmp.productId, pseudoId:product.pseudoId, productName:product.productName,
                         description:product.description, price:priceMap.price, listPrice:priceMap.listPrice, priceUomId:priceMap.priceUomId,
                         sequenceNum:pcmp.sequenceNum, smallImageInfo:smallImageInfo, mediumImageInfo:mediumImageInfo])</script>
