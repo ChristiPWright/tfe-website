@@ -6,7 +6,9 @@
 
     <service verb="get" noun="CategoryProducts">
         <in-parameters>
-            
+            <parameter name="productCategoryId" required="true"/>
+            <parameter name="priceUomId"/>
+            <parameter name="locale"/>
             <parameter name="orderBy" default-value="sequenceNum"/>
             <parameter name="pageIndex" default="0"/>
             <parameter name="pageSize" default="100"/>
@@ -26,6 +28,7 @@
             <parameter name="productListPageMaxIndex" type="Integer"/>
             <parameter name="productListPageRangeLow" type="Integer"/>
             <parameter name="productListPageRangeHigh" type="Integer"/>
+            <parameter name="priceMap" type="Map"/>
         </out-parameters>
         <actions>
             <service-call name="tfe-website.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
@@ -39,19 +42,27 @@
             <!-- use the name 'productList' so pagination out-parameters are created automatically -->
             <entity-find entity-name="mantle.product.category.ProductCategoryMember" list="productList" cache="true">
                 <search-form-inputs default-order-by="${orderBy}"/>
-                <date-filter/><econdition field-name="productCategoryId" value="PAINTING"/>
+                <date-filter/><econdition field-name="productCategoryId"/>
             </entity-find>
             <set field="pcmList" from="productList"/>
 
             <set field="productList" from="[]"/>
+            <set field="priceMap" from="[:]"/>
             <iterate list="pcmList" entry="pcmp">
                 <entity-find-one entity-name="mantle.product.Product" value-field="product" cache="true">
                     <field-map field-name="productId" from="pcmp.productId"/></entity-find-one>
 
-                <service-call name="mantle.product.PriceServices.get#ProductPrice" out-map="priceMap" out-map-add-to-existing="false"
-                        in-map="[productId:pcmp.productId, priceUomId:priceUomId, productStoreId:productStoreId,
-                                vendorPartyId:vendorPartyId, customerPartyId:customerPartyId]"/>
+                <!-- <entity-find-one entity-name="mantle.product.ProductPrice" value-field="productPrice" cache="true">
+                    <field-map field-name="productPriceId" from="pcmp.productId"/></entity-find-one> -->
 
+                <log message="${product.prices.price}"/>
+
+                <!-- <service-call name="mantle.product.PriceServices.get#ProductPrice" out-map="priceMap" out-map-add-to-existing="false"
+                        in-map="[productId:pcmp.productId, priceUomId:priceUomId, productStoreId:productStoreId,
+                                vendorPartyId:vendorPartyId, customerPartyId:customerPartyId]"/> -->
+                
+                <!-- <script>priceMap[product.productId] = product.prices.price</script> -->
+                  
                 <set field="smallImageInfo" from="null"/>
                 <set field="mediumImageInfo" from="null"/>
                 <entity-find entity-name="mantle.product.ProductContent" list="productContentList" cache="true">
@@ -75,13 +86,12 @@
                 
                 <!-- Below script needed to render the section.... What would be another way to achieve this? -->
                 <script>productList.add([productId:pcmp.productId, pseudoId:product.pseudoId, productName:product.productName,
-                        description:product.description, price:priceMap.price, listPrice:priceMap.listPrice, priceUomId:priceMap.priceUomId,
+                        description:product.description, price:product.prices.price, listPrice:product.prices.price, priceUomId:product.prices.priceUomId,
                         sequenceNum:pcmp.sequenceNum, smallImageInfo:smallImageInfo, mediumImageInfo:mediumImageInfo])</script>
             </iterate>
-        </actions>
-    </service>
-
-    
-
-    
+            
+         <log message="priceMap-----------------------${priceMap}--------------------------------------" />
+         <log message="pcmList..............................${pcmList}................       "/>
+        </actions>     
+    </service>    
 </services>

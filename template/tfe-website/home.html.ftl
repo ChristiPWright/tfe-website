@@ -24,14 +24,14 @@
     </div>
 </div>
 <div class="container">
-    <#if allProd?has_content>
+    <#if pscList?has_content>
         <div class="text-left mt-3 modal-text">Edit:This Week's deals</div>
         <div class="carousel">
             <div class="container text-center my-3">
                 <div class="row mx-auto my-auto">
                     <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                         <div class="carousel-inner w-100" role="listbox">
-                            <#list allProd as product>
+                            <#list allProductList as product>
                                 <#if product?index == 0>
                                     <div class="carousel-item active">
                                 <#else>
@@ -90,7 +90,7 @@
             </div>
         </div>
     </#if>
-    <#if allProd?has_content && featureProductList?has_content><hr/></#if>
+    <#if allProductList?has_content && allProductList?has_content><hr/></#if>
     <#if featureProductList?has_content>
         <div class="text-left mt-3 modal-text">Best Sellers</div>
         <div class="carousel">

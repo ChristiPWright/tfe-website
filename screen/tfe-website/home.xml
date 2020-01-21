@@ -7,23 +7,20 @@
         <service-call name="tfe-website.ProductServices.get#ProductInfo" in-map="productId" out-map="allProductInfo"/>
     </actions> -->
     <actions>
-        <!-- Get product category -->
-        <!-- <entity-find entity-name="mantle.product.category.ProductCategoryMember" list="allProductsCat" cache="true">
-            <econdition field-name="productCategoryId" value="PAINTING"/>
-            <econdition field-name="productId" operator="in" from="allProductsCat" />
+        <entity-find entity-name="mantle.product.store.ProductStoreCategory" list="pscList" cache="true">
+            
+            <econdition field-name="storeCategoryTypeEnumId" value="PsctHomePage"/>
         </entity-find>
-        <log message="${allProductsCat}" />
-        <log message="${productId}" />
-        <if condition="allProductsCat">
+        <if condition="pscList">
             <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allCatProdOut"
-                    in-map="[productCategoryId:allProductsCat[0].productCategoryId]"/>
+                    in-map="[productCategoryId:pscList[1].productCategoryId]"/>
             <set field="allProductList" from="allCatProdOut.productList"/>
-        </if> -->
+        </if>
 
-        <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allPaintingProdOut" />
-        <set field="allProd" from="allPaintingProdOut.productList"/>
-        <log message="${allProd}" />
-
+        <!-- <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allPaintingProdOut" /> -->
+        <!-- <set field="allProd" from="allPaintingProdOut.productList"/> -->
+        
+        <log message="allProductList-----------------------${allProductList}--------------------------------------" />
     </actions>
    
 
