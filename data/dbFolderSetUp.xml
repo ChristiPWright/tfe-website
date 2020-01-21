@@ -11,4 +11,8 @@
     <moqui.resource.DbResource resourceId="MANTLE_CONTENT" filename="content" isFile="N" parentResourceId="MANTLE"/>
     <moqui.resource.DbResource resourceId="MANTLE_Product_Artist" filename="product_artist" isFile="N" parentResourceId="MANTLE_CONTENT"/>
     <moqui.resource.DbResource resourceId="MANTLE_Garden_Rooster" filename="Garden_Rooster" isFile="N" parentResourceId="MANTLE_Product_Artist"/>
+    <moqui.resource.DbResource resourceId="MANTLE_Poppy_Parade" filename="Poppy_Parade" isFile="N" parentResourceId="MANTLE_Product_Artist"/>
+    <moqui.resource.DbResource resourceId="MANTLE_Vineyard_in_Autumn" filename="Vineyard_in_Autumn" isFile="N" parentResourceId="MANTLE_Product_Artist"/>
+    <moqui.resource.DbResource resourceId="MANTLE_Jims_Creek" filename="Jims_Creek" isFile="N" parentResourceId="MANTLE_Product_Artist"/>
+    <moqui.resource.DbResource resourceId="MANTLE_Bishop_Creek" filename="Bishop_Creek" isFile="N" parentResourceId="MANTLE_Product_Artist"/>
 </entity-facade-xml>
