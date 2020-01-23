@@ -10,9 +10,11 @@
      -->
     
     <actions>
-        <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allProdOut" />
+        <!-- Get all products in a specific productCategoryId; in this case ProdCat -->
+        <set field="allProdCat" value="ProdCat" />
+        <service-call name="tfe-website.ProductServices.get#CategoryProducts" in-map="[productCategoryId:allProdCat]" out-map="allProdOut" />
             <set field="allProd" from="allProdOut.productList" />
-
+    
         <log message="tfe-website::::allProd-----------------------${allProd}--------------------------------------" />
     </actions>
 
