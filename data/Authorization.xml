@@ -6,15 +6,8 @@
     <artifactGroups artifactGroupId="EMPLOYMENT_API">
         <artifacts artifactName="component://tfe-website/screen/tfe-website/home*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
 
-        <artifacts artifactName="component://tfe-website/screen/tfe-website/home.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="component://tfe-website/screen/store.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="component://webroot/screen/webroot.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="component://tfe-website/service/tfe-website*" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="Y"/>
         
-        <artifacts artifactName="component://tfe-website/service/storeService.xml" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="component://tfe-website/service/ArtistStore/CartServices.xml" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="component://tfe-website/service/ArtistStore/CustomerServices.xml" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="component://tfe-website/service/ArtistStore/ProductServices.xml" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="component://tfe-website/service/ArtistStore/StoreServices.xml" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
     </artifactGroups>
 
 </entity-facade-xml>

@@ -1,0 +1,7 @@
+I am a detailed description of PRoduct 1's information.
+
+- See I have multiple lines
+
+- Like lots of lines.
+
+- Do you get the point yet?

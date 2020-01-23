@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
-        require-authentication="anonymous-view">
-    
-     <!-- <actions>
-        <service-call name="tfe-website.ProductServices.get#ProductInfo" in-map="productId" out-map="allProductInfo"/>
-    </actions> -->
-    <actions>
-        <entity-find entity-name="mantle.product.store.ProductStoreCategory" list="pscList" cache="true">
-            
-            <econdition field-name="storeCategoryTypeEnumId" value="PsctHomePage"/>
-        </entity-find>
-        <if condition="pscList">
-            <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allCatProdOut"
-                    in-map="[productCategoryId:pscList[1].productCategoryId]"/>
-            <set field="allProductList" from="allCatProdOut.productList"/>
-        </if>
+<screen require-authentication="anonymous-all" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
 
-        <!-- <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allPaintingProdOut" /> -->
-        <!-- <set field="allProd" from="allPaintingProdOut.productList"/> -->
-        
-        <log message="allProductList-----------------------${allProductList}--------------------------------------" />
+    <!-- <transition name="TheTransition" require-session-token="false">
+        <service-call name="TheService.create#TheForm" in-map="context" out-map="context"/>
+        <default-response url="."/>
+    </transition> -->
+    <!-- <transition name="Stripe" require-session-token="false">
+      <service-call name="tfe-website.TheService.hitStripe"/>
+      <default-response url="."/>
+  </transition>
+     -->
+    
+    <actions>
+        <service-call name="tfe-website.ProductServices.get#CategoryProducts" out-map="allProdOut" />
+            <set field="allProd" from="allProdOut.productList" />
+
+        <log message="tfe-website::::allProd-----------------------${allProd}--------------------------------------" />
     </actions>
-   
 
     <widgets>
-        <label type="h1" text="I'm on the home.xml file!"/>
-        <render-mode>
-            <text type="html" location="component://tfe-website/template/tfe-website/navbar.html.ftl"/>
-        </render-mode>
         <render-mode>
             <text type="html" location="component://tfe-website/template/tfe-website/home.html.ftl"/>
-        </render-mode>
-        <render-mode>
-            <text type="html" location="component://tfe-website/template/tfe-website/footer.html.ftl"/>
         </render-mode>
     </widgets>
 </screen>
