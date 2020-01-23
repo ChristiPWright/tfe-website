@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen require-authentication="anonymous-view" allow-extra-path="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+
+    <parameter name="productId"/>
+    <parameter name="addedCorrect"/>
+    <parameter name="categoryId"/>
+
+    <pre-actions>
+        
+    </pre-actions>
+
+    <widgets>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/navbar.html.ftl"/>
+        </render-mode>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/product.html.ftl"/>
+        </render-mode>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/footer.html.ftl"/>
+        </render-mode>
+    </widgets>
+</screen>
