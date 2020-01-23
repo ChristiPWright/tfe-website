@@ -3,10 +3,6 @@
 <screen require-authentication="anonymous-all" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
 
-    <!-- <transition name="TheTransition" require-session-token="false">
-        <service-call name="TheService.create#TheForm" in-map="context" out-map="context"/>
-        <default-response url="."/>
-    </transition> -->
     <!-- <transition name="Stripe" require-session-token="false">
       <service-call name="tfe-website.TheService.hitStripe"/>
       <default-response url="."/>
@@ -22,7 +18,13 @@
 
     <widgets>
         <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/navbar.html.ftl"/>
+        </render-mode>
+        <render-mode>
             <text type="html" location="component://tfe-website/template/tfe-website/home.html.ftl"/>
+        </render-mode>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/footer.html.ftl"/>
         </render-mode>
     </widgets>
 </screen>

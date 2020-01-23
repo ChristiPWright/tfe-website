@@ -15,7 +15,7 @@
                             <div class="carousel-item">
                         </#if>
                             <div class="d-block col-lg-3 col-12">
-                                <a class="category-product" href="/store/product/${product.productId}">
+                                <a class="category-product" href="/tfe-website/product/${product.productId}">
                                     <figure class="figure">
                                         <#if product.mediumImageInfo??>
                                             <img width="90%" class="figure-img img-fluid" src="tfe-website/assets/${product.mediumImageInfo.contentLocation}">
