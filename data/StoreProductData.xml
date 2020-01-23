@@ -2,53 +2,29 @@
 
 <entity-facade-xml type="seed">
     <!-- This section adds the Product Category -->
-    <mantle.product.category.ProductCategory productCategoryId="PAINTING" productCategoryTypeEnumId="PctCatalog" categoryName="Painting" description=""/>
-    <mantle.product.store.ProductStoreCategory productStoreId="POPC_DEFAULT" productCategoryId="PAINTING" storeCategoryTypeEnumId="PsctHomePage"/>
+    <mantle.product.category.ProductCategory productCategoryId="ProdCat" productCategoryTypeEnumId="PctCatalog" categoryName="Product Category" description=""/>
+    
     
     <!-- This section adds the individual products -->
 
     <!-- ProductCategoryMember not working so commented out and manually added && might need a unique productPriceId for each product-->
 
-    <!-- Adds Garden Rooster Painting Product Info -->
-    <mantle.product.Product productId="GARDEN_ROOSTER"  productName="Garden Rooster" description=""/>
-    <!-- <mantle.product.product.ProductCategoryMember productId="GARDEN_ROOSTER" productCategoryId="PAINTING" from="2010-02-03 02:00"/> -->
-    <mantle.product.ProductPrice productId="GARDEN_ROOSTER" productPriceId="SMALL_A" price="318.99" priceUomId="USD"  productStoreId="POPC_DEFAULT" priceTypeEnumId="PptList"/>
-    <mantle.product.ProductContent productId="GARDEN_ROOSTER" productContentId="GARDEN_ROOSTER_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/image.jpg"/>
-    <mantle.product.ProductContent productId="GARDEN_ROOSTER" productContentId="GARDEN_ROOSTER_D"  locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Garden_Rooster/description.txt"/>
-    <mantle.product.asset.Asset productId="GARDEN_ROOSTER" assetId="A_GR" assetTypeEnumId="AstTpInventory" />
-    <mantle.product.asset.AssetDetail productId="GARDEN_ROOSTER" assetId="A_GR" assetDetailId="AS_GR" quantityOnHandDiff="1" availableToPromiseDiff="1"/>
+    <!-- Adds Item 1 Product Info -->
+    <mantle.product.Product productId="PRODUCT_1"  productName="Product 1" description=""/>
+    <mantle.product.category.ProductCategoryMember productId="PRODUCT_1" productCategoryId="ProdCat" from="2010-02-03 02:00"/>
+    <mantle.product.ProductPrice productId="PRODUCT_1" productPriceId="SMALL_A" price="318.99" priceUomId="USD"  productStoreId="POPC_DEFAULT" />
+    <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="PRODUCT_1_Img.jpg"/>
 
+    <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_D"  locale="en_US" contentLocation="PRODUCT_1_DL.txt"/>
+ 
+    <!-- Adds Item 2 Product Info -->
+    <mantle.product.Product productId="PRODUCT_2"  productName="Product 2" description=""/>
+    <mantle.product.category.ProductCategoryMember productId="PRODUCT_2" productCategoryId="ProdCat" from="2010-02-03 02:00"/>
+    <mantle.product.ProductPrice productId="PRODUCT_2" productPriceId="SMALL_B" price="418.99" priceUomId="USD" productStoreId="POPC_DEFAULT" />
+    <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2A_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="PRODUCT_2A_Img.jpg"/>
+    <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2B_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="PRODUCT_2B_Img.jpg"/>
+    <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2_D"  locale="en_US" contentLocation="PRODUCT_1_DL.txt"/>
 
-    <!-- Adds Poppy_Parade Painting Product Info -->
-    <mantle.product.Product productId="POPPY_PARADE"  productName="Poppy Parade" description=""/>
-    <!-- <mantle.product.product.ProductCategoryMember productId="POPPY_PARADE" productCategoryId="PAINTING" from="2010-02-03 02:00"/> -->
-    <mantle.product.ProductPrice productId="POPPY_PARADE" productPriceId="SMALL_B" price="418.99" priceUomId="USD" productStoreId="POPC_DEFAULT" priceTypeEnumId="PptList"/>
-    <mantle.product.ProductContent productId="POPPY_PARADE" productContentId="POPPY_PARADE_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Poppy_Parade/image.jpg"/>
-    <mantle.product.ProductContent productId="POPPY_PARADE" productContentId="POPPY_PARADE_D"  locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Poppy_Parade/description.txt"/>
-
-    <!-- Adds Vineyard_in_Autumn Painting Product Info -->
-    <mantle.product.Product productId="VINEYARD_IN_AUTUMN"  productName="Vineyard in Autumn" description=""/>
-    <!-- <mantle.product.product.ProductCategoryMember productId="VINEYARD_IN_AUTUMN" productCategoryId="PAINTING" from="2010-02-03 02:00"/> -->
-    <mantle.product.ProductPrice productId="VINEYARD_IN_AUTUMN" productPriceId="LARGE" price="1418.99" priceUomId="USD" productStoreId="POPC_DEFAULT" priceTypeEnumId="PptList"/>
-    <mantle.product.ProductContent productId="VINEYARD_IN_AUTUMN" productContentId="VINEYARD_IN_AUTUMN_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Vineyard_in_Autumn/image.jpg"/>
-    <mantle.product.ProductContent productId="VINEYARD_IN_AUTUMN" productContentId="VINEYARD_IN_AUTUMN_D"  locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Vineyard_in_Autumn/description.txt"/> 
-
-    <!-- Adds Jims_Creek Painting Product Info -->
-    <mantle.product.Product productId="JIMS_CREEK"  productName="Jims Creek" description=""/>
-    <!-- <mantle.product.product.ProductCategoryMember productId="JIMS_CREEK" productCategoryId="PAINTING" from="2010-02-03 02:00"/> -->
-    <mantle.product.ProductPrice productId="JIMS_CREEK" productPriceId="MED" price="1018.99" priceUomId="USD" productStoreId="POPC_DEFAULT" priceTypeEnumId="PptList"/>
-    <mantle.product.ProductContent productId="JIMS_CREEK" productContentId="JIMS_CREEK_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Jims_Creek/image.jpg"/>
-    <mantle.product.ProductContent productId="JIMS_CREEK" productContentId="JIMS_CREEK_D"  locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Jims_Creek/description.txt"/>
-
-    <!-- Adds Bishop_Creek Painting Product Info -->
-    <mantle.product.Product productId="BISHOP_CREEK"  productName="Bishop Creek" description=""/>
-    <!-- <mantle.product.product.ProductCategoryMember productId="BISHOP_CREEK" productCategoryId="PAINTING" from="2010-02-03 02:00"/> -->
-    <mantle.product.ProductPrice productId="BISHOP_CREEK" productPriceId="SMALL_C" price="518.99" priceUomId="USD" productStoreId="POPC_DEFAULT" priceTypeEnumId="PptList"/>
-    <mantle.product.ProductContent productId="BISHOP_CREEK" productContentId="BISHOP_CREEK_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Bishop_Creek/image.jpg"/>
-    <mantle.product.ProductContent productId="BISHOP_CREEK" productContentId="BISHOP_CREEK_D"  locale="en_US" contentLocation="dbresource://mantle/content/product_artist/Bishop_Creek/description.txt"/>
-
-    <!-- add the files to the product folder -->
-    <!-- <dbResources resourceId="GARDEN_ROOSTER" filename="My_Garden_Rooster.jpg" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/>
-    <dbResources resourceId="GARDEN_ROOSTER" filename="description.txt" isFile="Y" parentResourceId="MANTLE_Garden_Rooster"/> -->
+    <!-- ContentLocation is titled to complete the correct source path in assets path -->
 
 </entity-facade-xml>
