@@ -1,67 +1,134 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>eCommerce Product Detail</title>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-
-  </head>
-
-  <body>
-	
-	<div class="container">
-		<div class="card">
-			<div class="container-fliud">
-				<div class="wrapper row">
-					<div class="preview col-md-6">
-						
-						<div class="preview-pic tab-content">
-                        
-                        <#list product.contentList as img>
-                            <#if img.get(sequenceNum) == 1>
-                            <div class="tab-pane active" id="pic-1">
-                                <img src="http://placekitten.com/400/252" />
-                            </div>
+<#assign inStock = false>
+<#if product.productAvailability=="[AstAvailable]"><#assign inStock = true></#if>
+<div class="container mt-2">
+    <a class="customer-link" href="/store">Home <i class="fas fa-angle-right"></i></a>
+    <a class="customer-link">${product.productName}</a>
+</div>
+<div class="container container-text mt-1">
+    <#if addedCorrect?? && addedCorrect == 'true'>
+        <div class="alert alert-primary mt-3 mb-3" role="alert">
+            <i class="far fa-check-square"></i> You added a ${product.productName} to your shopping cart.
+            <a class="float-right" href="/store/d#/checkout">Go to Checkout <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </#if>
+    <div class="row mt-2">
+        <div class="col col-lg-1 col-sm-4 col-4">
+            <div>
+                <#assign imgDetail = false/>
+                <#assign imgExists = false/>
+                <#list product.contentList as img>
+                    <#if img.productContentTypeEnumId == "PcntImageMedium" && img.sequenceNum == 1>
+                        <img width="30%" class="figure-img img-fluid" src="tfe-website/assets/${img.contentLocation}">   
+                    <#elseif img.productContentTypeEnumId == "PcntImageSmall" && img.sequenceNum == 1> 
+                        <img width="30%" class="figure-img img-fluid" src="tfe-website/assets/${img.contentLocation}">
+                    <#elseif img.productContentTypeEnumId == "PcntImageLarge" && img.sequenceNum == 1>
+                        <img width="30%" class="figure-img img-fluid" src="tfe-website/assets/${img.contentLocation}">
+                    </#if>
+                    <#if img.productContentTypeEnumId == "PcntImageLarge">
+                        <#assign imgExists = true/>
+                        <img onClick="changeLargeImage('${img.productContentId}');"
+                            class="figure-img img-fluid product-img"
+                            src="/tfe-website/assets/productImage/${img.productContentId}"
+                            alt="Product Image">
+                    </#if>
+                </#list>
+            </div>
+        </div>
+        <div class="col col-lg-4 col-sm-8 col-8">
+            <img id="product-image-large" class="product-img-select" 
+                <#if imgDetail>data-toggle="modal" data-target="#modal2"</#if>>
+        </div>
+        
+        <div class="col col-lg-3">
+            <form class="card cart-div" method="post" action="/store/product/addToCart">
+                <div>
+                    <#if product.listPrice??>
+                        <span class="save-circle" v-if="product.listPrice">
+                            <span class="save-circle-title">SAVE</span>
+                            <span class="save-circle-text">$${(product.listPrice - product.price)?string(",##0.00")}</span>
+                        </span>
+                    </#if>
+                    <div class="form-group col">
+                        <div class="cart-form-price">
+                            <p>
+                                <span class="price-text">$${product.price}</span> 
+                                <#if product.listPrice??>
+                                    <span>
+                                        <span class="product-listprice-text">was</span>
+                                        <del>${product.listPrice}</del>
+                                    </span>
+                                </#if>
+                            </p>
+                        </div>
+                        <hr class="product-hr" style="margin-top: -5px;">
+                        <#--
+                        <span class="product-description">On sale until midnight or until stocks last.</span>
+                        <hr class="product-hr">
+                        -->
+                    </div>
+                    <div class="form-group col">
+                        <input type="hidden" value="${product.pseudoId}" name="productId" id="productId" />
+                        <input type="hidden" value="${product.priceUomId}" name="currencyUomId" />
+                        <input type="hidden" value="${ec.web.sessionToken}" name="moquiSessionToken"/>
+                        <span class="product-description">Quantity</span>
+                        <select class="form-control text-gdark" name="quantity" id="quantity">
+                            <#if productQuantity.productQuantity??>
+                                <#list 1..productQuantity.productQuantity as x>
+                                    <option value="${x}">${x}</option>
+                                </#list>
                             <#else>
-                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                                <option value="0">0</option> 
                             </#if>
-                        </#list>
-						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						</ul>
-						</div>
-					</div>
-					<div class="details col-md-6">
-						<h3 class="product-title">${product.pseudoId}</h3>
-						
-                        <h4 class="price">current price: <span>$${product.price}</span></h4>
-						
-						
-                        <h5>${product.description}</h5>
+                        </select>
+                    </div>
+                </div>
+                <#if inStock>
+                    <button onclick="onClickAddButton();" id="cartAdd" class="btn cart-form-btn col" type="submit" onclick="">
+                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                    </button>
+                <#else>
+                    <h5 class="text-center">Out of Stock</h5>
+                </#if>
+            </form>
+        </div>
+    </div>
+    <hr>
+</div>
 
-						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-  </body>
-</html>
+
+<script>
+    var prodImageUrl = "/tfe-website/assets/productImage/";
+    var $productImageLarge = document.getElementById("product-image-large");
+
+    document.body.onload = function() {
+            var productAvailability = ${product.productAvailability?replace('=',':')};
+            var variantIdList = [];
+            <#list 0..variantsList.listFeatures.keySet()?size - 1  as x>
+                $('#variantProduct${x}').on('change', function() {
+                    var productVariantId = $('#productId').val();
+                    variantIdList[${x}] = this.value;
+                    if(typeof(variantIdList[1]) != 'undefined') {
+                        productVariantId = productVariantId + '_' + variantIdList[1] + '_' + variantIdList[0];
+                    } else {
+                        productVariantId = productVariantId + '_' + variantIdList[0];
+                    }
+                });
+            </#list>
+    }
+
+    function onClickAddButton() {
+        $('#spinner').show();
+    }
+
+    function changeLargeImage(productContentId) { $productImageLarge.src = prodImageUrl + productContentId; }
+    //Default image
+    <#if product.contentList?has_content && imgExists>
+        changeLargeImage("${product.contentList[0].productContentId}");
+    <#else>
+        $productImageLarge.src = "/store/assets/default.png";
+    </#if>
+    function setStarNumber(number) {
+        var productRating = document.getElementById("productRating");
+        productRating.value = number;
+    }
+</script>

@@ -13,14 +13,14 @@
     <mantle.product.Product productId="PRODUCT_1"  productName="Product 1" description=""/>
     <mantle.product.ProductPrice productId="PRODUCT_1" productPriceId="SMALL_A" price="318.99" priceUomId="USD"  productStoreId="POPC_DEFAULT" />
     <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" sequenceNum="1" contentLocation="PRODUCT_1_Img.jpg"/>
-    <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_D"  locale="en_US" productContentTypeEnumId="PcntDescriptionLong" contentLocation="PRODUCT_1_DL.txt"/>
+    <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_D"  locale="en_US" productContentTypeEnumId="PcntDescriptionLong" contentLocation="PRODUCT_1_DL.html"/>
  
     <!-- Adds Item 2 Product Info -->
     <mantle.product.Product productId="PRODUCT_2"  productName="Product 2" description=""/>
     <mantle.product.ProductPrice productId="PRODUCT_2" productPriceId="SMALL_B" price="418.99" priceUomId="USD" productStoreId="POPC_DEFAULT" />
     <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2A_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" sequenceNum="1" contentLocation="PRODUCT_2A_Img.jpg"/>
     <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2B_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" sequenceNum="2" contentLocation="PRODUCT_2B_Img.jpg"/>
-    <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2_D"  locale="en_US" productContentTypeEnumId="PcntDescriptionLong" contentLocation="PRODUCT_1_DL.txt"/>
+    <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2_D"  locale="en_US" productContentTypeEnumId="PcntDescriptionLong" contentLocation="PRODUCT_1_DL.html"/>
 
      <!-- ContentLocation is titled to complete the correct source path in assets path -->   
 
@@ -28,4 +28,8 @@
     <mantle.product.category.ProductCategoryMember productId="PRODUCT_1" productCategoryId="ProdCat" from="2010-02-03 02:00"/>
     <mantle.product.category.ProductCategoryMember productId="PRODUCT_2" productCategoryId="ProdCat" from="2010-02-03 02:00"/>
 
+    <!-- Add assets -->
+    <!-- Below is not being pulled in.....manually added right now -->
+    <!-- <mantle.product.asset.Asset assetId="Product_Asset" />
+ 
 </entity-facade-xml>
