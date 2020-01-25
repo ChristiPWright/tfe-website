@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen require-authentication="anonymous-all" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+
+    <transition name="TheTransition" require-session-token="false">
+        <service-call name="tfe-website.create#TheForm" in-map="context" out-map="context"/>
+        <default-response url="."/>
+    </transition>
+    
+    <widgets>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/navbar.html.ftl"/>
+        </render-mode>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/contact.html"/>
+        </render-mode>
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/footer.html.ftl"/>
+        </render-mode>
+    </widgets>
+</screen>

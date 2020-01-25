@@ -15,7 +15,6 @@
         <service-call name="tfe-website.ProductServices.get#CategoryProducts" in-map="[productCategoryId:allProdCat]" out-map="allProdOut" />
             <set field="allProd" from="allProdOut.productList" />
     
-        <log message="tfe-website::::allProd-----------------------${allProd}--------------------------------------" />
     </actions>
 
     <widgets>
