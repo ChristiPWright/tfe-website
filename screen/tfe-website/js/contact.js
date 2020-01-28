@@ -1,3 +1,5 @@
+var submitBtn = document.querySelector(".submit-btn")
+
 var formInputs = document.getElementById("contactForm")
 
 var firstName = document.getElementById("firstName")
@@ -7,11 +9,10 @@ var contactNumber = document.getElementById("contactNumber")
 var subject = document.getElementById("subject")
 var description = document.getElementById("description")
 
-formInputs.addEventListener("submit", function(e) {
-    e.preventDefault();
-    fillArray();
+console.log(submitBtn);
+
+submitBtn.addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log("checking" + formInputs);
 })
 
-function fillArray(){
-    console.log("checking" + formInput.value);
-}

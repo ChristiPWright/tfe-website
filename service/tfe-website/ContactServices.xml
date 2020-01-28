@@ -3,15 +3,15 @@
 
     <service verb="create" noun="TheForm">
         <in-parameters>
-            <parameter name="firstName" required="true"/>
-            <parameter name="lastName" required="true"/>
-            <parameter name="emailAddress" required="true">
+            <parameter name="firstName" />
+            <parameter name="lastName" />
+            <parameter name="emailAddress" >
                 <text-email message="Please enter a valid email"/>
             </parameter>
             <parameter name="contactNumber">
                 <matches regexp="^\d\d[-\. \d]*\d\d$" message="Please enter a valid phone number"/>
             </parameter>
-            <parameter name="subject" required="true"/>
+            <parameter name="subject" />
             <parameter name="description"/>
         </in-parameters>
 
@@ -19,6 +19,7 @@
         </out-parameters>
 
         <actions>
+            <log message="=============hitiing=============="/>
             <service-call name="mantle.party.PartyServices.create#Person" in-map="context" out-map="context"/>
             <service-call name="mantle.party.ContactServices.store#PartyContactInfo" in-map="context" out-map="context"/>
         </actions>
