@@ -15,4 +15,6 @@ submitBtn.addEventListener("submit", function(event) {
     event.preventDefault();
     console.log("checking" + formInputs);
 })
-
+submitBtn.addEventListener("click", function(){
+    alert("Hello World!");
+});
