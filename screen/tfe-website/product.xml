@@ -15,6 +15,7 @@
                 <if condition="addOut.orderHeader != null">
                     <set field="addedCorrect" from="true"/>
                 </if>
+            <log message="======================================= addToCart transition hit============" />
         </actions>
         <conditional-response url="."><condition><expression>categoryId != null</expression></condition><parameter name="categoryId"/><parameter name="addedCorrect"/></conditional-response>
         <conditional-response url="."><condition><expression>searchParameter != null</expression></condition><parameter name="searchParameter"/><parameter name="addedCorrect"/></conditional-response>

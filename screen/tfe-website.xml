@@ -2,6 +2,12 @@
 <screen require-authentication="false" standalone="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
     <subscreens default-item="home"/>
+
+<!--    <pre-actions>-->
+<!--        &lt;!&ndash; cartInfo for cart count in header/navbar &ndash;&gt;-->
+<!--        <service-call name="tfe-website.CartServices.get#CartInfo" out-map="cartInfo" in-map="context"/>-->
+<!--    </pre-actions>-->
+
     <widgets>
         <subscreens-active/>
     </widgets>
