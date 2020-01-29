@@ -126,13 +126,6 @@ a:hover { text-decoration: none; }
 .save-circle-text { font-size: 0.9em; display: inline-block; position: absolute; margin-top: 8px; }
 .save-circle-title { font-size: 0.9em; display: inline-block; position: absolute; margin-top: -8px; }
 
-/* Product Review */
-.rating-stars ul { list-style-type:none; padding:0; -moz-user-select:none; -webkit-user-select:none; }
-.rating-stars ul > li.star { display:inline-block; cursor: pointer; }
-.rating-stars ul > li.star > i.fa { font-size:1em; color:#ccc; }
-.rating-stars ul > li.star.hover > i.fa { color:#ffed00; }
-.rating-stars ul > li.star.selected > i.fa { color:#ffed00; }
-.text-area-review { resize: none; }
 
 /* Checkout */
 .change-info { font-size: 0.9em !important; margin-top: 7px; }

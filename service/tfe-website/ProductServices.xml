@@ -81,6 +81,7 @@
             <parameter name="listPrice" type="BigDecimal"/>
             <parameter name="priceUomId"/>
             <parameter name="productId"/>
+            <parameter name="prodDescription"/>
 
             <parameter name="descriptionLong"/>
             <parameter name="descriptionSmall"/>
@@ -111,6 +112,7 @@
 
             <set field="productAvailability" from="product.assets.statusId" />
             <set field="productQuantity" from="product.assets.quantityOnHandTotal ? product.assets.quantityOnHandTotal : 0"/>
+            <set field="prodDescription" from="product.description" />
 
             <entity-find entity-name="mantle.product.feature.ProductFeatureAndAppl" list="standardFeatureList" cache="true">
                 <date-filter/><econdition field-name="productId"/>

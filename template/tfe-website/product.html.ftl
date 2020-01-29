@@ -1,7 +1,7 @@
 <#assign inStock = false>
 <#if product.productAvailability=="[AstAvailable]"><#assign inStock = true></#if>
 <div class="container mt-2">
-    <a class="customer-link" href="/store">Home <i class="fas fa-angle-right"></i></a>
+    <a class="customer-link" href="/tfe-website">Home <i class="fas fa-angle-right"></i></a>
     <a class="customer-link">${product.productName}</a>
 </div>
 <div class="container container-text mt-1">
@@ -17,18 +17,18 @@
                 <#assign imgDetail = false/>
                 <#assign imgExists = false/>
                 <#list product.contentList as img>
-                    <#if img.productContentTypeEnumId == "PcntImageMedium" && img.sequenceNum == 1>
-                        <img width="30%" class="figure-img img-fluid" src="tfe-website/assets/${img.contentLocation}">   
+                    <#if img.productContentTypeEnumId == 'PcntImageMedium' && img.sequenceNum == 1>
+                        <img width="30%" class="figure-img img-fluid" src="../assets/${img.contentLocation}">
                     <#elseif img.productContentTypeEnumId == "PcntImageSmall" && img.sequenceNum == 1> 
-                        <img width="30%" class="figure-img img-fluid" src="tfe-website/assets/${img.contentLocation}">
+                        <img width="30%" class="figure-img img-fluid" src="../assets/${img.contentLocation}">
                     <#elseif img.productContentTypeEnumId == "PcntImageLarge" && img.sequenceNum == 1>
-                        <img width="30%" class="figure-img img-fluid" src="tfe-website/assets/${img.contentLocation}">
+                        <img width="30%" class="figure-img img-fluid" src="../assets/${img.contentLocation}">
                     </#if>
                     <#if img.productContentTypeEnumId == "PcntImageLarge">
                         <#assign imgExists = true/>
                         <img onClick="changeLargeImage('${img.productContentId}');"
                             class="figure-img img-fluid product-img"
-                            src="/tfe-website/assets/productImage/${img.productContentId}"
+                            src="../assets/productImage/${img.productContentId}"
                             alt="Product Image">
                     </#if>
                 </#list>
@@ -40,31 +40,20 @@
         </div>
         
         <div class="col col-lg-3">
-            <form class="card cart-div" method="post" action="/store/product/addToCart">
+            <form class="card cart-div" method="post" action="/tfe-website/product/addToCart">
                 <div>
-                    <#if product.listPrice??>
-                        <span class="save-circle" v-if="product.listPrice">
-                            <span class="save-circle-title">SAVE</span>
-                            <span class="save-circle-text">$${(product.listPrice - product.price)?string(",##0.00")}</span>
-                        </span>
-                    </#if>
                     <div class="form-group col">
                         <div class="cart-form-price">
                             <p>
-                                <span class="price-text">$${product.price}</span> 
-                                <#if product.listPrice??>
-                                    <span>
-                                        <span class="product-listprice-text">was</span>
-                                        <del>${product.listPrice}</del>
-                                    </span>
-                                </#if>
+                                <span class="price-text">$${product.price}</span>
+                            </p>
+                        </div>
+                        <div class="description">
+                            <p>
+                                ${product.description}
                             </p>
                         </div>
                         <hr class="product-hr" style="margin-top: -5px;">
-                        <#--
-                        <span class="product-description">On sale until midnight or until stocks last.</span>
-                        <hr class="product-hr">
-                        -->
                     </div>
                     <div class="form-group col">
                         <input type="hidden" value="${product.pseudoId}" name="productId" id="productId" />
@@ -72,8 +61,8 @@
                         <input type="hidden" value="${ec.web.sessionToken}" name="moquiSessionToken"/>
                         <span class="product-description">Quantity</span>
                         <select class="form-control text-gdark" name="quantity" id="quantity">
-                            <#if productQuantity.productQuantity??>
-                                <#list 1..productQuantity.productQuantity as x>
+                            <#if product.productQuantity[0]??>
+                                <#list 1..product.productQuantity[0] as x>
                                     <option value="${x}">${x}</option>
                                 </#list>
                             <#else>

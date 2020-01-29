@@ -7,7 +7,7 @@
       <li class="active"><a href="/tfe-website">Home</a></li>
       <li><a href="/tfe-website/contact">Contact Us</a></li>
       <li>
-        <a href=""/tfe-website/cart"">Cart</a>
+        <a href="/tfe-website/cart">Cart</a>
          <#assign cartCount = 0>
                     <#if cartInfo.orderItemList??>
                         <#list cartInfo.orderItemList as item>
