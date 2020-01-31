@@ -19,7 +19,6 @@
         </out-parameters>
 
         <actions>
-            <log message="=============hitiing=============="/>
             <service-call name="mantle.party.PartyServices.create#Person" in-map="context" out-map="context"/>
             <service-call name="mantle.party.ContactServices.store#PartyContactInfo" in-map="context" out-map="context"/>
         </actions>

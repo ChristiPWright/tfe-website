@@ -64,7 +64,7 @@
                 </if>
                 <script>productList.add([productId:pcmp.productId,pseudoId:product.pseudoId,productName:product.productName, description:product.description, price:product.prices.price[0],priceUomId:product.prices.priceUomId[0],smallImageInfo:smallImageInfo, mediumImageInfo:mediumImageInfo])</script>
             </iterate>
-            <log message="tfe-website::::productList-----------------------${productList}--------------------------------------" />
+
         </actions>
     </service>
 
@@ -100,6 +100,7 @@
             </parameter>
             <parameter name="productAvailability"/>
             <parameter name="productQuantity"/>
+            <parameter name="productStoreId"/>
 
         </out-parameters>
         <actions>
@@ -107,9 +108,17 @@
             <if condition="product == null"><return error="true" message="Product not found with ID ${productId}"/></if>
             <script>context.putAll(product)</script>
 
+            <service-call name="tfe-website.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
+            <if condition="productStoreId">
+                <entity-find-one entity-name="mantle.product.store.ProductStore" value-field="productStore"/>
+                <if condition="!priceUomId"><set field="priceUomId" from="productStore?.defaultCurrencyUomId"/></if>
+                <set field="vendorPartyId" from="productStore?.organizationPartyId"/>
+            </if>
+
             <set field="price" from="product.prices.price[0]"/>
             <set field="priceUomId" from="product.prices.priceUomId"/>
 
+            <set field="productStoreId" from="product.categories.stores.store.productStoreId[0]"/>
             <set field="productAvailability" from="product.assets.statusId" />
             <set field="productQuantity" from="product.assets.quantityOnHandTotal ? product.assets.quantityOnHandTotal : 0"/>
             <set field="prodDescription" from="product.description" />
@@ -134,7 +143,6 @@
             <if condition="descSmallLocation"><set field="descriptionSmall" from="ec.resource.getLocationText(descSmallLocation, true)"/></if>
             <!-- <set field="imageSmallList" from="contentList.findAll({ 'PcntImageSmall' == it.productContentTypeEnumId })"/> -->
 
-            <log message="ProductService/ProductInfo::::price-----------------------${price}--------------------------------------" />
         </actions>
     </service>
 
@@ -280,6 +288,7 @@
             <parameter name="subCategoryList" type="List"><parameter name="categoryInfo" type="Map"/></parameter>
         </out-parameters>
         <actions>
+            <log message="tfe-website/product::::categoryInfo-----------------------${categoryInfo}--------------------------------------" />
             <service-call name="tfe-website.CartServices.get#ActiveOrderAndCustomer" out-map="context"/>
 
             <entity-find-one entity-name="mantle.product.category.ProductCategory" value-field="productCategory" cache="true"/>

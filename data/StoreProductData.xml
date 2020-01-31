@@ -3,21 +3,20 @@
 <entity-facade-xml type="seed">
     <!-- This section adds the Product Category -->
     <mantle.product.category.ProductCategory productCategoryId="ProdCat" productCategoryTypeEnumId="PctCatalog" categoryName="Product Category" description=""/>
-    
-    
-    <!-- This section adds the individual products -->
 
-    <!-- ProductCategoryMember not working so commented out and manually added && might need a unique productPriceId for each product-->
+<!--    This section connects the products with the product store through categories-->
+    <mantle.product.store.ProductStoreCategory productStoreId="POPC_DEFAULT" productCategoryId="ProdCat" storeCategoryTypeEnumId="PsctViewAllow" />
+    <!-- This section adds the individual products -->
 
     <!-- Adds Item 1 Product Info -->
     <mantle.product.Product productId="PRODUCT_1"  productName="Product 1" description="I am a description for Product #1"/>
-    <mantle.product.ProductPrice productId="PRODUCT_1" productPriceId="SMALL_A" price="318.99" priceUomId="USD"  productStoreId="POPC_DEFAULT" />
+    <mantle.product.ProductPrice productId="PRODUCT_1" productPriceId="SMALL_A" price="318.99" priceUomId="USD"   />
     <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" sequenceNum="1" contentLocation="PRODUCT_1_Img.jpg"/>
     <mantle.product.ProductContent productId="PRODUCT_1" productContentId="PRODUCT_1_D"  locale="en_US" productContentTypeEnumId="PcntDescriptionLong" contentLocation="PRODUCT_1_DL.html"/>
  
     <!-- Adds Item 2 Product Info -->
     <mantle.product.Product productId="PRODUCT_2"  productName="Product 2" description="I am a description for Product #2"/>
-    <mantle.product.ProductPrice productId="PRODUCT_2" productPriceId="SMALL_B" price="418.99" priceUomId="USD" productStoreId="POPC_DEFAULT" />
+    <mantle.product.ProductPrice productId="PRODUCT_2" productPriceId="SMALL_B" price="418.99" priceUomId="USD"  />
     <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2A_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" sequenceNum="1" contentLocation="PRODUCT_2A_Img.jpg"/>
     <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2B_Img" productContentTypeEnumId="PcntImageMedium" locale="en_US" sequenceNum="2" contentLocation="PRODUCT_2B_Img.jpg"/>
     <mantle.product.ProductContent productId="PRODUCT_2" productContentId="PRODUCT_2_D"  locale="en_US" productContentTypeEnumId="PcntDescriptionLong" contentLocation="PRODUCT_1_DL.html"/>
@@ -29,9 +28,7 @@
     <mantle.product.category.ProductCategoryMember productId="PRODUCT_2" productCategoryId="ProdCat" from="2010-02-03 02:00"/>
 
     <!-- Add assets -->
-    <!-- Below is not being pulled in.....manually added right now -->
-    <!-- <mantle.product.asset.Asset assetId="Product_1_Asset" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="1" /> -->
+    <mantle.product.asset.Asset assetId="Product_1_Asset" productId="PRODUCT_1" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="1" />
+    <mantle.product.asset.Asset assetId="Product_2_Asset" productId="PRODUCT_2" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="1" />
 
-<!--    Sample ORDER data added only while screens not rendering-->
-    <mantle.order.OrderHeader orderId="Demo" />
 </entity-facade-xml>
