@@ -27,6 +27,7 @@ along with this software (see the LICENSE.md file). If not, see
         <if condition="cartOrderId">
             <service-call name="mantle.order.OrderInfoServices.get#OrderDisplayInfo" in-map="[orderId:cartOrderId]" out-map="context"/>
         </if>
+        <log message="\n Cart screen:OrderDisplayInfo context +++++++++++++++++++++++++++++++++++++++++++++++${context}++++++++++++++++++++++++++++++++++" />
         <entity-find entity-name="moqui.basic.EnumGroupMember" list="productItemTypeEgms" cache="true">
             <econdition field-name="enumGroupEnumId" value="EngItemsProduct"/></entity-find>
         <set field="productItemTypes" from="productItemTypeEgms*.enumId"/>
@@ -36,6 +37,7 @@ along with this software (see the LICENSE.md file). If not, see
             <row-actions>
                 <service-call name="mantle.order.OrderServices.get#OrderItemTotal" in-map="[orderItem:orderItem]" out-map="orderItemTotalOut"/>
                 <script>context.putAll(orderItem)</script>
+                <log message="\n Cart screen:orderItemTotalOut context +++++++++++++++++++++++++++++++++++++++++++++++${orderItemTotalOut}++++++++++++++++++++++++++++++++++" />
             </row-actions>
             <field name="orderItemSeqId">
                 <conditional-field condition="productId"><hidden/></conditional-field>

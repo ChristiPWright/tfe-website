@@ -7,20 +7,22 @@
     <parameter name="addedCorrect"/>
     <parameter name="categoryId"/>
 
-    <transition name="addToCart">
+    <transition name="addToCart" require-session-token="false" method="post">
         <actions>
             <service-call name="tfe-website.CartServices.add#Product" out-map="addOut"
-                in-map="[productId:productId, quantity:quantity, currencyUomId:currencyUomId]"/> 
+                in-map="[productId:productId, quantity:quantity, currencyUomId:currencyUomId]"/>
                 <set field="addedCorrect" from="false"/>
                 <if condition="addOut.orderHeader != null">
                     <set field="addedCorrect" from="true"/>
                 </if>
-            <log message="======================================= addToCart transition hit============" />
+<!--            <service-call name="tfe-website.CartServices.interface#OrderInfo"  out-map="orderInfoOut"  />-->
+            <log message="productTransitions=================================${orderInfoOut}=================================================" />
         </actions>
         <conditional-response url="."><condition><expression>categoryId != null</expression></condition><parameter name="categoryId"/><parameter name="addedCorrect"/></conditional-response>
         <conditional-response url="."><condition><expression>searchParameter != null</expression></condition><parameter name="searchParameter"/><parameter name="addedCorrect"/></conditional-response>
         <default-response url="."><parameter name="addedCorrect"/></default-response>
         <error-response url="."/>
+
     </transition>
 
     <transition name="removeCartItem">
@@ -34,8 +36,8 @@
                 <set field="searchParameter" from="searchParameter"/>
             </if>
         </actions>
-        <conditional-response url="."><condition><expression>categoryId != null</expression></condition><parameter name="categoryId"/><parameter name="addedCorrect"/></conditional-response>
-        <conditional-response url="."><condition><expression>searchParameter != null</expression></condition><parameter name="searchParameter"/><parameter name="addedCorrect"/></conditional-response>
+<!--        <conditional-response url="."><condition><expression>categoryId != null</expression></condition><parameter name="categoryId"/><parameter name="addedCorrect"/></conditional-response>-->
+<!--        <conditional-response url="."><condition><expression>searchParameter != null</expression></condition><parameter name="searchParameter"/><parameter name="addedCorrect"/></conditional-response>-->
         <default-response url="."/>
     </transition>
 
@@ -51,18 +53,16 @@
 
     <actions>
         <service-call name="tfe-website.ProductServices.get#ProductInfo" out-map="product" in-map="[productId:productId]"/>
-        <log message="tfe-website/product::::product-----------------------${product}--------------------------------------" />
+        <log message="\ntfe-website/product::::product-----------------------${product}--------------------------------------\n" />
         <!-- Added quantity to Product Info service -->
         <!-- Added availability to Product Info service -->
-        <service-call name="tfe-website.CartServices.get#CartInfo" in-map="context" out-map="productsInCart" />
-        
-        <log message="tfe-website/product::::product.productAvailability-----------------------${product.productAvailability}--------------------------------------" />
-        
-              
+<!--        <service-call name="tfe-website.CartServices.get#CartInfo" in-map="context" out-map="productsInCart" />-->
+
+<!--        Category call not hitting.. do I need it to or just take it out?-->
         <if condition="categoryId">
             <service-call name="tfe-website.ProductServices.get#CategoryInfo" out-map="category" in-map="[productCategoryId:categoryId]"/>
         </if>
-        
+        <log message="tfe-website/product::::category-----------------------${category}--------------------------------------" />
         <!-- <set field="specialInstrLocation" from="product.contentList.find({'PcntSpecialInstr' == it.productContentTypeEnumId})?.contentLocation"/>
         <if condition="specialInstrLocation">
             <set field="specialInstructions" from="ec.resource.getLocationText(specialInstrLocation, true)"/>
@@ -88,10 +88,14 @@
     </actions>   
 
     <widgets>
-        
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/navbar.html.ftl"/>
+        </render-mode>
         <render-mode>
             <text type="html" location="component://tfe-website/template/tfe-website/product.html.ftl"/>
         </render-mode>
-        
+        <render-mode>
+            <text type="html" location="component://tfe-website/template/tfe-website/footer.html.ftl"/>
+        </render-mode>
     </widgets>
 </screen>
