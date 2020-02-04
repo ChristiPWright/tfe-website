@@ -3,7 +3,7 @@
     <head></head>
     <body>
         <div>
-            <h1>Hello</h1>
+            <h1>Welcome to the virtual gallery of artist Beth Summers.</h1>
         </div>
         <div class="container">
             <#if allProd?has_content>

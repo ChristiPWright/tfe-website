@@ -10,6 +10,7 @@
      -->
     
     <actions>
+        <log message="\n\n\n\n\n\n\n\n\n\n\n++++++++++++++++++++++++++++++++++++++++++++  New Attempt ++++++++++++++++++++++++++++++++++++\n\n\n\n\n" />
         <!-- Get all products in a specific productCategoryId; in this case ProdCat -->
         <set field="allProdCat" value="ProdCat" />
         <service-call name="tfe-website.ProductServices.get#CategoryProducts" in-map="[productCategoryId:allProdCat]" out-map="allProdOut" />

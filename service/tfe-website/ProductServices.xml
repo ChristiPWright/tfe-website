@@ -116,7 +116,7 @@
             </if>
 
             <set field="price" from="product.prices.price[0]"/>
-            <set field="priceUomId" from="product.prices.priceUomId"/>
+            <set field="priceUomId" from="product.prices.priceUomId[0]"/>
 
             <set field="productStoreId" from="product.categories.stores.store.productStoreId[0]"/>
             <set field="productAvailability" from="product.assets.statusId" />

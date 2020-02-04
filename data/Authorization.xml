@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-facade-xml type="seed">
     <moqui.security.ArtifactGroup artifactGroupId="EMPLOYMENT_API"/>
-    <moqui.security.ArtifactAuthz userGroupId="ADMIN" authzActionEnumId="AUTHZA_ALL" artifactGroupId="EMPLOYMENT_API" authzTypeEnumId="AUTHZT_ALLOW"/>
+    <moqui.security.ArtifactAuthz userGroupId="ALL_USERS" authzActionEnumId="AUTHZA_ALL" artifactGroupId="EMPLOYMENT_API" authzTypeEnumId="AUTHZT_ALLOW"/>
 
     <artifactGroups artifactGroupId="EMPLOYMENT_API">
         <artifacts artifactName="component://tfe-website/screen/tfe-website*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
