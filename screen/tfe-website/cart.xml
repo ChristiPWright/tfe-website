@@ -16,6 +16,8 @@ along with this software (see the LICENSE.md file). If not, see
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         require-authentication="anonymous-view" allow-extra-path="true">
 
+    <parameter name="orderId"/>
+
     <transition name="updateCartItems">
         <service-call name="mantle.order.OrderServices.update#OrderProductQuantity" multi="true" in-map="context + [orderId:cartOrderId]"/>
         <default-response url="."/></transition>
@@ -24,10 +26,14 @@ along with this software (see the LICENSE.md file). If not, see
         <set field="html_title" value="Shopping Cart${cartOrderId ? ' for Order #' + cartOrderId : ''}"/>
     </pre-actions>
     <actions>
+<!--        <entity-find entity-name="mantle.order.OrderHeader" value-field="order" />-->
+<!--            <set field="orderId" from="order.orderId" />-->
+
+        <log message="orderId=====================================================${orderId}===================================" />
+
         <if condition="cartOrderId">
             <service-call name="mantle.order.OrderInfoServices.get#OrderDisplayInfo" in-map="[orderId:cartOrderId]" out-map="context"/>
         </if>
-        <log message="\n Cart screen:OrderDisplayInfo context +++++++++++++++++++++++++++++++++++++++++++++++${context}++++++++++++++++++++++++++++++++++" />
         <entity-find entity-name="moqui.basic.EnumGroupMember" list="productItemTypeEgms" cache="true">
             <econdition field-name="enumGroupEnumId" value="EngItemsProduct"/></entity-find>
         <set field="productItemTypes" from="productItemTypeEgms*.enumId"/>
@@ -37,24 +43,24 @@ along with this software (see the LICENSE.md file). If not, see
             <row-actions>
                 <service-call name="mantle.order.OrderServices.get#OrderItemTotal" in-map="[orderItem:orderItem]" out-map="orderItemTotalOut"/>
                 <script>context.putAll(orderItem)</script>
-                <log message="\n Cart screen:orderItemTotalOut context +++++++++++++++++++++++++++++++++++++++++++++++${orderItemTotalOut}++++++++++++++++++++++++++++++++++" />
+
             </row-actions>
             <field name="orderItemSeqId">
-                <conditional-field condition="productId"><hidden/></conditional-field>
+            <conditional-field condition="productId"><hidden/></conditional-field>
                 <default-field><ignored/></default-field></field>
             <field name="itemTypeEnumId"><default-field title="Type">
                 <display-entity entity-name="moqui.basic.Enumeration" key-field-name="enumId" text="${description}" also-hidden="false"/>
             </default-field></field>
             <field name="description">
                 <conditional-field condition="productId">
-                    <link text="${itemDescription} [${productId}]" url="/popc/Product/Detail/${productId}/${itemDescription?.replace(' ', '-')}" link-type="anchor"/>
+                    <link text="${itemDescription} [${productId}]" url="/tfe-website/Product/Detail/${productId}/${itemDescription?.replace(' ', '-')}" link-type="anchor"/>
                     <!-- <display-entity entity-name="Product" text="${productName} [${productId}]" also-hidden="false"/> -->
                 </conditional-field>
                 <default-field title="Description"><display text="${itemDescription}"/></default-field>
             </field>
-            <!--<field name="productId"><default-field title="Product">
+            <field name="productId"><default-field title="Product">
                 <display-entity entity-name="Product" text="${productName} [${productId}]" also-hidden="false"/>
-            </default-field></field>-->
+            </default-field></field>
             <field name="unitAmount"><default-field>
                 <display currency-unit-field="orderHeader.currencyUomId" also-hidden="false"/>
             </default-field></field>

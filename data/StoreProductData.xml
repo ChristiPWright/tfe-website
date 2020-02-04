@@ -28,7 +28,7 @@
     <mantle.product.category.ProductCategoryMember productId="PRODUCT_2" productCategoryId="ProdCat" from="2010-02-03 02:00"/>
 
     <!-- Add assets -->
-    <mantle.product.asset.Asset assetId="Product_1_Asset" productId="PRODUCT_1" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="1" />
-    <mantle.product.asset.Asset assetId="Product_2_Asset" productId="PRODUCT_2" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="1" />
+    <mantle.product.asset.Asset assetId="Product_1_Asset" productId="PRODUCT_1" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="100"/>
+    <mantle.product.asset.Asset assetId="Product_2_Asset" productId="PRODUCT_2" assetTypeEnumId="AstTpInventory" statusId="AstAvailable" hasQuantity="Y" quantityOnHandTotal="100"/>
 
 </entity-facade-xml>

@@ -1,14 +1,9 @@
 <footer class="footer">
     <div class="container">
         <div class="row" v-if="infoLink">
+
             <ul class="col col-lg-3 footer-ul">
-                <li><a href="/store/content/help" class="footer-a">Help Center</a></li>
-                <li><a href="/store/content/help" class="footer-a">Delivery Rates</a></li>
-                <li><a href="/store/content/help#delivery" class="footer-a">Delivery Times</a></li>
-            </ul>
-            
-            <ul class="col col-lg-3 footer-ul">
-                <li><a href="/store/content/contact" class="footer-a">Contact Us</a></li>
+                <li><a href="/tfe-website/contact" class="footer-a">Contact Us</a></li>
             </ul>
             <ul class="col col-lg-3 footer-ul">
                 <li class="footer-follow-text">Follow Us</li>
